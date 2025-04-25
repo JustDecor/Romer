@@ -18,7 +18,7 @@ jobs:
           sed -i 's/\${API_KEY}/${{ secrets.FIREBASE_API_KEY }}/g' index.html
 
       - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.1.4
+        uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
           branch: gh-pages       # Гілка, куди пушиться деплой
           folder: .              # Каталог, який деплоїш
