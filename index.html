@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romer - Społeczność absolwentów i uczniów</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b5998;
+            --secondary-color: #f5f5f5;
+            --accent-color: #4a86e8;
+            --text-color: #333;
+            --light-text: #fff;
+            --shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--light-text);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #ddd;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(59, 89, 152, 0.7), rgba(59, 89, 152, 0.9)), url('https://via.placeholder.com/1200x400');
+            background-size: cover;
+            background-position: center;
+            color: var(--light-text);
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3a75d2;
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        .auth-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        
+        .auth-links {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        
+        .auth-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .stories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .story-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .story-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .story-content {
+            padding: 1.5rem;
+        }
+        
+        .story-content h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .story-meta {
+            color: #777;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .story-preview {
+            margin-bottom: 1rem;
+        }
+        
+        .editor-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .editor-header {
+            margin-bottom: 1.5rem;
+        }
+        
+        .editor-title {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .editor-toolbar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .editor-toolbar button {
+            background-color: #f1f1f1;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .editor-toolbar button:hover {
+            background-color: #e1e1e1;
+        }
+        
+        .editor-content {
+            min-height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .image-upload {
+            margin-bottom: 1rem;
+        }
+        
+        .image-preview {
+            max-width: 100%;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .full-story {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .full-story-header {
+            margin-bottom: 2rem;
+        }
+        
+        .full-story-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .full-story-meta {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .full-story-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            margin-bottom: 2rem;
+        }
+        
+        .full-story-content {
+            line-height: 1.8;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1rem;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+        #user-profile {
+            display: none;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            z-index: 1000;
+            display: none;
+        }
+
+        .error-notification {
+            background-color: #f44336;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">Romer</a>
+            <nav>
+                <ul id="nav-links">
+                    <li><a href="index.html">Strona główna</a></li>
+                    <li><a href="#" id="nav-stories">Historie</a></li>
+                    <li class="auth-link"><a href="#" id="nav-login">Logowanie</a></li>
+                    <li class="auth-link"><a href="#" id="nav-register">Rejestracja</a></li>
+                    <li id="user-profile"><a href="#" id="nav-profile">Mój profil</a></li>
+                    <li id="user-add-story"><a href="#" id="nav-add-story">Dodaj historię</a></li>
+                    <li id="user-logout" style="display: none;"><a href="#" id="nav-logout">Wyloguj</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div id="notification" class="notification"></div>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Witaj w społeczności Romer</h1>
+            <p>Miejsce, gdzie uczniowie i absolwenci I Liceum Ogólnokształcącego im. Eugeniusza Romera w Rabce-Zdroju mogą dzielić się swoimi historiami i wspomnieniami.</p>
+            <p><em>Uwaga: Ta strona nie jest oficjalną stroną internetową I LO im. E. Romera.</em></p>
+            <a href="#" class="btn" id="hero-btn">Przeglądaj historie</a>
+        </div>
+    </section>
+
+    <main id="main-content" class="container">
+        <!-- Zawartość będzie dynamicznie wstawiana przez JavaScript -->
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>O projekcie</h3>
+                <p>Romer to nieoficjalna platforma dla społeczności związanej z I Liceum Ogólnokształcącego im. Eugeniusza Romera w Rabce-Zdroju.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Szybkie linki</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Strona główna</a></li>
+                    <li><a href="#" id="footer-stories">Historie</a></li>
+                    <li><a href="#" id="footer-login">Zaloguj się</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+                <p>Masz pytania? Skontaktuj się z nami!</p>
+                <p>Email: kontakt@romer-spolecznosc.pl</p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2025 Romer. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Import the functions you need from the SDKs
+        import { initializeApp } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/11.6.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, doc, getDoc, getDocs, query, where, orderBy, limit, serverTimestamp } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/11.6.1/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/11.6.1/firebase-storage.js";
+
+        // Firebase configuration - należy zastąpić własnymi danymi
+
+        const firebaseConfig = {
+    apiKey: "AIzaSyBA3wL8LLk25X7QDdu3se5qLgmBMpA7EFY",
+    authDomain: "romer-cb221.firebaseapp.com",
+    projectId: "romer-cb221",
+    storageBucket: "romer-cb221.appspot.com",
+    messagingSenderId: "898947308511",
+    appId: "1:898947308511:web:81792c06001fce9f74826a"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+
+  // Globalne zmienne dostępowe
+  window.firebaseApp = app;
+  window.firebaseAuth = auth;
+  window.firebaseDb = db;
+  window.firebaseStorage = storage;
+  window.firebaseServerTimestamp = serverTimestamp;
+
+  // Elementy DOM
+  const mainContent = document.getElementById('main-content');
+  const navLogin = document.getElementById('nav-login');
+  const navRegister = document.getElementById('nav-register');
+  const navStories = document.getElementById('nav-stories');
+  const navAddStory = document.getElementById('nav-add-story');
+  const navProfile = document.getElementById('nav-profile');
+  const navLogout = document.getElementById('nav-logout');
+  const userProfile = document.getElementById('user-profile');
+  const userAddStory = document.getElementById('user-add-story');
+  const userLogout = document.getElementById('user-logout');
+  const heroBtn = document.getElementById('hero-btn');
+  const footerStories = document.getElementById('footer-stories');
+  const footerLogin = document.getElementById('footer-login');
+  const notification = document.getElementById('notification');
+
+  // Stan aplikacji
+  let currentUser = null;
+
+  // Funkcje pomocnicze
+  function showNotification(message, isError = false) {
+      notification.textContent = message;
+      notification.className = isError ? 'notification error-notification' : 'notification';
+      notification.style.display = 'block';
+      
+      setTimeout(() => {
+          notification.style.display = 'none';
+      }, 3000);
+  }
+
+  function formatDate(timestamp) {
+      if (!timestamp) return '';
+      const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+      return date.toLocaleDateString('pl-PL') + ' ' + date.toLocaleTimeString('pl-PL', {hour: '2-digit', minute:'2-digit'});
+  }
+
+  function updateUI() {
+      const authLinks = document.querySelectorAll('.auth-link');
+      
+      if (currentUser) {
+          authLinks.forEach(link => link.style.display = 'none');
+          userProfile.style.display = 'block';
+          userAddStory.style.display = 'block';
+          userLogout.style.display = 'block';
+      } else {
+          authLinks.forEach(link => link.style.display = 'block');
+          userProfile.style.display = 'none';
+          userAddStory.style.display = 'none';
+          userLogout.style.display = 'none';
+      }
+  }
+
+  // Funkcje renderujące widoki
+  function renderHomePage() {
+      mainContent.innerHTML = `
+          <h2>Najnowsze historie</h2>
+          <div class="stories-container" id="recent-stories">
+              <p>Ładowanie historii...</p>
+          </div>
+      `;
+      
+      loadRecentStories();
+  }
+
+  function renderLoginPage() {
+      mainContent.innerHTML = `
+          <div class="auth-container">
+              <h2>Logowanie</h2>
+              <form id="login-form">
+                  <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" id="email" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="password">Hasło</label>
+                      <input type="password" id="password" required>
+                  </div>
+                  <button type="submit" class="btn">Zaloguj się</button>
+              </form>
+              <div class="auth-links">
+                  <p>Nie masz konta? <a href="#" id="to-register">Zarejestruj się</a></p>
+              </div>
+          </div>
+      `;
+      
+      document.getElementById('login-form').addEventListener('submit', handleLogin);
+      document.getElementById('to-register').addEventListener('click', (e) => {
+          e.preventDefault();
+          renderRegisterPage();
+      });
+  }
+
+  function renderRegisterPage() {
+      mainContent.innerHTML = `
+          <div class="auth-container">
+              <h2>Rejestracja</h2>
+              <form id="register-form">
+                  <div class="form-group">
+                      <label for="username">Nazwa użytkownika</label>
+                      <input type="text" id="username" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" id="email" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="password">Hasło</label>
+                      <input type="password" id="password" required minlength="6">
+                  </div>
+                  <div class="form-group">
+                      <label for="confirm-password">Potwierdź hasło</label>
+                      <input type="password" id="confirm-password" required minlength="6">
+                  </div>
+                  <button type="submit" class="btn">Zarejestruj się</button>
+              </form>
+              <div class="auth-links">
+                  <p>Masz już konto? <a href="#" id="to-login">Zaloguj się</a></p>
+              </div>
+          </div>
+      `;
+      
+      document.getElementById('register-form').addEventListener('submit', handleRegister);
+      document.getElementById('to-login').addEventListener('click', (e) => {
+          e.preventDefault();
+          renderLoginPage();
+      });
+  }
+
+        function renderStoriesPage() {
+            mainContent.innerHTML = `
+                <h2>Wszystkie historie</h2>
+                <div class="stories-container" id="all-stories">
+                    <p>Ładowanie historii...</p>
+                </div>
+            `;
+            
+            loadAllStories();
+        }
+
+        function renderAddStoryPage() {
+            if (!currentUser) {
+                showNotification('Musisz być zalogowany, aby dodać historię', true);
+                renderLoginPage();
+                return;
+            }
+            
+            mainContent.innerHTML = `
+                <div class="editor-container">
+                    <div class="editor-header">
+                        <h2>Dodaj nową historię</h2>
+                    </div>
+                    <form id="story-form">
+                        <div class="form-group">
+                            <label for="story-title">Tytuł</label>
+                            <input type="text" id="story-title" class="editor-title" required>
+                        </div>
+                        
+                        <div class="editor-toolbar">
+                            <button type="button" data-command="bold"><i class="fas fa-bold"></i></button>
+                            <button type="button" data-command="italic"><i class="fas fa-italic"></i></button>
+                            <button type="button" data-command="underline"><i class="fas fa-underline"></i></button>
+                            <button type="button" data-command="justifyLeft"><i class="fas fa-align-left"></i></button>
+                            <button type="button" data-command="justifyCenter"><i class="fas fa-align-center"></i></button>
+                            <button type="button" data-command="justifyRight"><i class="fas fa-align-right"></i></button>
+                            <button type="button" data-command="insertUnorderedList"><i class="fas fa-list-ul"></i></button>
+                            <button type="button" data-command="insertOrderedList"><i class="fas fa-list-ol"></i></button>
+                            <button type="button" data-command="createLink"><i class="fas fa-link"></i></button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div id="editor" class="editor-content" contenteditable="true"></div>
+                        </div>
+                        
+                        <div class="form-group image-upload">
+                            <label for="story-image">Dodaj zdjęcie</label>
+                            <input type="file" id="story-image" accept="image/*">
+                            <img id="image-preview" class="image-preview">
+                        </div>
+                        
+                        <button type="submit" class="btn">Opublikuj historię</button>
+                    </form>
+                </div>
+            `;
+            
+            // Inicjalizacja edytora
+            const buttons = document.querySelectorAll('.editor-toolbar button');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const command = button.dataset.command;
+                    if (command === 'createLink') {
+                        const url = prompt('Wpisz adres URL:');
+                        if (url) document.execCommand(command, false, url);
+                    } else {
+                        document.execCommand(command, false, null);
+                    }
+                });
+            });
+            
+            // Podgląd zdjęcia
+            const imageInput = document.getElementById('story-image');
+            const imagePreview = document.getElementById('image-preview');
+            
+            imageInput.addEventListener('change', () => {
+                const file = imageInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        imagePreview.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Obsługa formularza
+            document.getElementById('story-form').addEventListener('submit', handleStorySubmit);
+        }
+
+        function renderStoryPage(storyId) {
+            mainContent.innerHTML = '<p>Ładowanie historii...</p>';
+            
+            db.collection('stories').doc(storyId).get()
+                .then(doc => {
+                    if (doc.exists) {
+                        const story = doc.data();
+                        
+                        db.collection('users').doc(story.authorId).get()
+                            .then(userDoc => {
+                                const author = userDoc.exists ? userDoc.data().username : 'Nieznany użytkownik';
+                                
+                                mainContent.innerHTML = `
+                                    <div class="full-story">
+                                        <div class="full-story-header">
+                                            <h1 class="full-story-title">${story.title}</h1>
+                                            <div class="full-story-meta">
+                                                <p>Autor: ${author} | Data: ${formatDate(story.createdAt)}</p>
+                                            </div>
+                                        </div>
+                                        ${story.imageUrl ? `<img src="${story.imageUrl}" alt="${story.title}" class="full-story-image">` : ''}
+                                        <div class="full-story-content">
+                                            ${story.content}
+                                        </div>
+                                    </div>
+                                `;
+                            })
+                            .catch(error => {
+                                console.error("Błąd pobierania danych autora: ", error);
+                                showNotification('Wystąpił błąd podczas ładowania danych autora', true);
+                            });
+                    } else {
+                        mainContent.innerHTML = '<p>Historia nie została znaleziona</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error("Błąd pobierania historii: ", error);
+                    showNotification('Wystąpił błąd podczas ładowania historii', true);
+                });
+        }
+
+        function renderProfilePage() {
+            if (!currentUser) {
+                showNotification('Musisz być zalogowany, aby zobaczyć swój profil', true);
+                renderLoginPage();
+                return;
+            }
+            
+            mainContent.innerHTML = `
+                <div class="auth-container">
+                    <h2>Mój profil</h2>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <p>${currentUser.email}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Nazwa użytkownika</label>
+                        <p id="profile-username">Ładowanie...</p>
+                    </div>
+                    <h3>Moje historie</h3>
+                    <div id="user-stories">
+                        <p>Ładowanie twoich historii...</p>
+                    </div>
+                </div>
+            `;
+            
+            // Pobierz dane użytkownika
+            db.collection('users').doc(currentUser.uid).get()
+                .then(doc => {
+                    if (doc.exists) {
+                        document.getElementById('profile-username').textContent = doc.data().username;
+                    }
+                })
+                .catch(error => {
+                    console.error("Błąd pobierania danych użytkownika: ", error);
+                });
+            
+            // Pobierz historie użytkownika
+            db.collection('stories')
+                .where('authorId', '==', currentUser.uid)
+                .orderBy('createdAt', 'desc')
+                .get()
+                .then(snapshot => {
+                    const userStoriesContainer = document.getElementById('user-stories');
+                    
+                    if (snapshot.empty) {
+                        userStoriesContainer.innerHTML = '<p>Nie opublikowałeś jeszcze żadnych historii.</p>';
+                    } else {
+                        let storiesHTML = '<div class="stories-container">';
+                        
+                        snapshot.forEach(doc => {
+                            const story = doc.data();
+                            storiesHTML += `
+                                <div class="story-card">
+                                    ${story.imageUrl ? `<img src="${story.imageUrl}" alt="${story.title}" class="story-image">` : ''}
+                                    <div class="story-content">
+                                        <h3>${story.title}</h3>
+                                        <div class="story-meta">
+                                            <span>${formatDate(story.createdAt)}</span>
+                                        </div>
+                                        <a href="#" class="btn view-story" data-id="${doc.id}">Czytaj więcej</a>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                        
+                        storiesHTML += '</div>';
+                        userStoriesContainer.innerHTML = storiesHTML;
+                        
+                        document.querySelectorAll('.view-story').forEach(link => {
+                            link.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                renderStoryPage(e.target.dataset.id);
+                            });
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Błąd pobierania historii użytkownika: ", error);
+                    showNotification('Wystąpił błąd podczas ładowania twoich historii', true);
+                });
+        }
+
+        async function handleLogin(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      try {
+          await signInWithEmailAndPassword(auth, email, password);
+          showNotification('Zalogowano pomyślnie');
+          renderHomePage();
+      } catch (error) {
+          console.error("Błąd logowania: ", error);
+          showNotification('Błąd logowania: ' + error.message, true);
+      }
+  }
+
+  async function handleRegister(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      
+      if (password !== confirmPassword) {
+          showNotification('Hasła nie są identyczne', true);
+          return;
+      }
+      
+      try {
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          // Dodaj nazwę użytkownika do bazy danych
+          await setDoc(doc(db, 'users', userCredential.user.uid), {
+              username: username,
+              email: email,
+              createdAt: serverTimestamp()
+          });
+          showNotification('Konto zostało utworzone pomyślnie');
+          renderHomePage();
+      } catch (error) {
+          console.error("Błąd rejestracji: ", error);
+          showNotification('Błąd rejestracji: ' + error.message, true);
+      }
+  }
+
+function handleStorySubmit(e) {
+    e.preventDefault();
+    
+    if (!currentUser) {
+        showNotification('Musisz być zalogowany, aby dodać historię', true);
+        renderLoginPage();
+        return;
+    }
+    
+    const title = document.getElementById('story-title').value;
+    const content = document.getElementById('editor').innerHTML;
+    const imageFile = document.getElementById('story-image').files[0];
+    
+    // Sprawdzanie poprawności danych
+    if (!title || !content) {
+        showNotification('Wypełnij wszystkie wymagane pola', true);
+        return;
+    }
+    
+    showNotification('Trwa publikowanie twojej historii...');
+    
+    // Jeśli jest zdjęcie, najpierw je prześlij
+    if (imageFile) {
+        const storageRef = storage.ref();
+        const imageRef = storageRef.child(`images/${currentUser.uid}/${Date.now()}_${imageFile.name}`);
+        
+        imageRef.put(imageFile)
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(downloadURL => {
+                // Zapisz historię z URL obrazu
+                return saveStory(title, content, downloadURL);
+            })
+            .then(() => {
+                showNotification('Historia została opublikowana pomyślnie');
+                renderHomePage();
+            })
+            .catch(error => {
+                console.error("Błąd publikowania historii: ", error);
+                showNotification('Wystąpił błąd podczas publikowania historii', true);
+            });
+    } else {
+        // Zapisz historię bez obrazu
+        saveStory(title, content)
+            .then(() => {
+                showNotification('Historia została opublikowana pomyślnie');
+                renderHomePage();
+            })
+            .catch(error => {
+                console.error("Błąd publikowania historii: ", error);
+                showNotification('Wystąpił błąd podczas publikowania historii', true);
+            });
+    }
+}
+
+function saveStory(title, content, imageUrl = null) {
+    return db.collection('stories').add({
+        title: title,
+        content: content,
+        imageUrl: imageUrl,
+        authorId: currentUser.uid,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+}
+
+function handleLogout() {
+    auth.signOut()
+        .then(() => {
+            showNotification('Wylogowano pomyślnie');
+            renderHomePage();
+        })
+        .catch(error => {
+            console.error("Błąd wylogowywania: ", error);
+            showNotification('Wystąpił błąd podczas wylogowywania', true);
+        });
+}
+
+// Funkcje ładujące dane
+function loadRecentStories() {
+    const recentStoriesContainer = document.getElementById('recent-stories');
+    
+    db.collection('stories')
+        .orderBy('createdAt', 'desc')
+        .limit(6)
+        .get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                recentStoriesContainer.innerHTML = '<p>Brak historii do wyświetlenia</p>';
+            } else {
+                let storiesHTML = '';
+                
+                const promises = snapshot.docs.map(doc => {
+                    const story = doc.data();
+                    return db.collection('users').doc(story.authorId).get()
+                        .then(userDoc => {
+                            const author = userDoc.exists ? userDoc.data().username : 'Nieznany użytkownik';
+                            
+                            storiesHTML += `
+                                <div class="story-card">
+                                    ${story.imageUrl ? `<img src="${story.imageUrl}" alt="${story.title}" class="story-image">` : ''}
+                                    <div class="story-content">
+                                        <h3>${story.title}</h3>
+                                        <div class="story-meta">
+                                            <span>Autor: ${author}</span>
+                                            <span>${formatDate(story.createdAt)}</span>
+                                        </div>
+                                        <div class="story-preview">
+                                            ${story.content.replace(/<[^>]*>/g, '').substring(0, 100)}...
+                                        </div>
+                                        <a href="#" class="btn view-story" data-id="${doc.id}">Czytaj więcej</a>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                });
+                
+                Promise.all(promises)
+                    .then(() => {
+                        recentStoriesContainer.innerHTML = storiesHTML;
+                        
+                        document.querySelectorAll('.view-story').forEach(link => {
+                            link.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                renderStoryPage(e.target.dataset.id);
+                            });
+                        });
+                    });
+            }
+        })
+        .catch(error => {
+            console.error("Błąd pobierania historii: ", error);
+            recentStoriesContainer.innerHTML = '<p>Wystąpił błąd podczas ładowania historii</p>';
+        });
+}
+
+function loadAllStories() {
+    const allStoriesContainer = document.getElementById('all-stories');
+    
+    db.collection('stories')
+        .orderBy('createdAt', 'desc')
+        .get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                allStoriesContainer.innerHTML = '<p>Brak historii do wyświetlenia</p>';
+            } else {
+                let storiesHTML = '';
+                
+                const promises = snapshot.docs.map(doc => {
+                    const story = doc.data();
+                    return db.collection('users').doc(story.authorId).get()
+                        .then(userDoc => {
+                            const author = userDoc.exists ? userDoc.data().username : 'Nieznany użytkownik';
+                            
+                            storiesHTML += `
+                                <div class="story-card">
+                                    ${story.imageUrl ? `<img src="${story.imageUrl}" alt="${story.title}" class="story-image">` : ''}
+                                    <div class="story-content">
+                                        <h3>${story.title}</h3>
+                                        <div class="story-meta">
+                                            <span>Autor: ${author}</span>
+                                            <span>${formatDate(story.createdAt)}</span>
+                                        </div>
+                                        <div class="story-preview">
+                                            ${story.content.replace(/<[^>]*>/g, '').substring(0, 100)}...
+                                        </div>
+                                        <a href="#" class="btn view-story" data-id="${doc.id}">Czytaj więcej</a>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                });
+                
+                Promise.all(promises)
+                    .then(() => {
+                        allStoriesContainer.innerHTML = storiesHTML;
+                        
+                        document.querySelectorAll('.view-story').forEach(link => {
+                            link.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                renderStoryPage(e.target.dataset.id);
+                            });
+                        });
+                    });
+            }
+        })
+        .catch(error => {
+            console.error("Błąd pobierania historii: ", error);
+            allStoriesContainer.innerHTML = '<p>Wystąpił błąd podczas ładowania historii</p>';
+        });
+}
+
+// Nasłuchiwanie zdarzeń
+navLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+      renderLoginPage();
+  });
+  
+  navRegister.addEventListener('click', (e) => {
+      e.preventDefault();
+      renderRegisterPage();
+  });
+  
+  navStories.addEventListener('click', (e) => {
+      e.preventDefault();
+      renderStoriesPage();
+  });
+  
+  navAddStory.addEventListener('click', (e) => {
+      e.preventDefault();
+      renderAddStoryPage();
+  });
+  
+  navProfile.addEventListener('click', (e) => {
+      e.preventDefault();
+      renderProfilePage();
+  });
+  
+  navLogout.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleLogout();
+  });
+  
+  heroBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      renderStoriesPage();
+  });
+  
+  footerStories.addEventListener('click', (e) => {
+      e.preventDefault();
+      renderStoriesPage();
+  });
+  
+  footerLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+      renderLoginPage();
+  });
+
+  // Sprawdź stan uwierzytelnienia przy ładowaniu strony
+  onAuthStateChanged(auth, (user) => {
+      if (user) {
+          currentUser = user;
+      } else {
+          currentUser = null;
+      }
+      
+      updateUI();
+      renderHomePage();
+  });
+</script>
+</body>
+</html>
