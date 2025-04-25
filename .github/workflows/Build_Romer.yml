@@ -1,9 +1,9 @@
-name: Build Romer
+name: Build and Deploy Romer
 
 on:
   push:
     branches:
-      - Romer
+      - Romer # або main, якщо перейменуєш
 
 jobs:
   build:
@@ -15,16 +15,11 @@ jobs:
 
       - name: Replace API_KEY in index.html
         run: |
-          # Zastąp pojedynczym poleceniem sed bez używania zmiennych shell
-          sed -i "s|\${API_KEY}|${{ secrets.FIREBASE_API_KEY }}|g" index.html
-          
-      - name: Debug - Check the replaced value (bez pokazywania klucza)
-        run: |
-          echo "Sprawdzanie, czy zastąpienie się powiodło:"
-          grep -o "apiKey: \".*\"" index.html | sed 's/apiKey: "\(.*\)"/API key length: ${#\1}/'
+          sed -i 's/\${API_KEY}/${{ secrets.FIREBASE_API_KEY }}/g' index.html
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.1.4
         with:
-          branch: gh-pages
-          folder: .
+          branch: gh-pages       # Гілка, куди пушиться деплой
+          folder: .              # Каталог, який деплоїш
+          token: ${{ secrets.GITHUB_TOKEN }}
