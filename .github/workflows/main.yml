@@ -1,4 +1,4 @@
-name: Build Romer
+name: Build and Deploy Romer
 
 on:
   push:
@@ -20,5 +20,9 @@ jobs:
       - name: (Optional) Build project
         run: echo "Build goes here"
 
-      - name: (Optional) Deploy
-        run: echo "Deploy step here"
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.1.4
+        with:
+          branch: gh-pages # Гілка, куди буде деплой
+          folder: .         # Каталог, який ти деплоїш (тут корінь репозиторію)
+          token: ${{ secrets.GITHUB_TOKEN }}
